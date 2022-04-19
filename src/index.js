@@ -8,6 +8,14 @@ const port = 3000
 // static file
 app.use(express.static(path.join(__dirname, 'public')))
 
+// middleware, form gửi lên
+// body chưa có sẵn như query
+app.use(express.urlencoded({
+  extended: true
+}))
+// js gửi lên (xmlhttprequest, axios)
+app.use(express.json())
+
 // http logger
 //app.use(morgan('combined'))
 
@@ -30,6 +38,11 @@ app.get('/news', (req, res) => {
 
 app.get('/search', (req, res) => {
   res.render('search')
+})
+
+app.post('/search', (req, res) => {
+  console.log(req.body.gender)
+  res.send('')
 })
 
 app.listen(port, () => {
