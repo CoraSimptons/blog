@@ -11,12 +11,12 @@
           </label>
         </div>
 
-        <select class="form-control form-control-sm checkbox-select-all-options" name="action" required>
+        <select class="form-control form-control-sm checkbox-select-all-options" name="action">
           <option value="">-- Chọn hành động --</option>
           <option value="delete">Xoá</option>
         </select>
 
-        <button class="btn btn-primary btn-sm check-all-submit-btn disabled">Thực hiện</button>
+        <button class="btn btn-primary btn-sm check-all-submit-btn" disabled>Thực hiện</button>
       </div>
     </div>
 
@@ -129,20 +129,13 @@
           }
         })
 
-        checkAllSubmitBtn.on('submit', function (e) {
-          var isSubmitable = !$(this).hasClass('disabled')
-          if (!isSubmitable) {
-            e.preventDefault();
-          }
-        })
-
         {{!-- Button not disabled --}}
         function renderCheckAllSubmitBtn() {
           var checkedCount = $('input[name="courseIds[]"]:checked').length;
           if (checkedCount) {
-            checkAllSubmitBtn.removeClass('disabled')
+            checkAllSubmitBtn.attr('disabled', false)
           } else {
-            checkAllSubmitBtn.addClass('disabled')
+            checkAllSubmitBtn.attr('disabled', true)
           }
         }
     })
