@@ -4,15 +4,14 @@ const morgan = require('morgan');
 const methodOverride = require('method-override');
 const { engine } = require('express-handlebars');
 const app = express();
-const port = 3000;
 
 const SortMiddleware = require('./app/middlewares/SortMiddleware');
 
 const route = require('./routes');
 
 // connect db
-const db = require('./config/db');
-db.connect();
+// const db = require('./config/db');
+// db.connect();
 
 // static file
 app.use(express.static(path.join(__dirname, 'public')));
@@ -76,6 +75,6 @@ app.set('views', path.join(__dirname, 'resources', 'views'));
 // Routes init
 route(app);
 
-app.listen(process.env.PORT, () => {
+app.listen(process.env.PORT || 3000, () => {
     console.log(`App listening on port ${port}`);
 });
